@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './App.css';
 
 // Another ways of styling by declaring an object and define styles in the object.
@@ -80,13 +81,18 @@ function App() {
       {
         friends.map(friend => <Friend name={friend.name} profession={friend.profession}></Friend>)
       }
+
+      {/* state handling */}
+      <Counter></Counter>
     </div>
   );
 }
 
-// creating custom component->similar in look different in data 
-// Start name with capital letter */
-// Adjacent JSX elements must be wrapped in an enclosing tag. either<></> or a <div></div>
+// creating custom component->similar in look different in data
+// Start name with capital letter 
+// Adjacent JSX elements must be wrapped in an enclosing tag. either<></>
+
+// component for state
 function Person(props) {
   console.log("🚀 ~ file: App.js ~ line 65 ~ Person ~ props", props)
   // return <h1>Dabasish Das Joy </h1>
@@ -101,7 +107,7 @@ function Person(props) {
   );
 }
 
-
+// component for Friend 
 function Friend(props){
   console.log("🚀 ~ file: App.js ~ line 79 ~ Friend ~ props", props)
   return(
@@ -112,6 +118,23 @@ function Friend(props){
   );
 }
 
+// component for state 
+function Counter() {
+  // useState is a state libaray which is used to control states. Sate has two elements of array (initial value, function)
+  const [state, setState] = useState(30);
 
+  // call the setState function to set the state value of given in params 
+  const increaseCounter = () => setState(state + 1);
+  const decreaseCounter = () => setState(state - 1);
+  
+  return (
+    <div style={{margin:'20px'}}>
+      <h1>Count: {state}</h1>
+      {/* in react on event lister don't use function call. Just define the function name.  */}
+      <button onClick={increaseCounter}>Increase</button>
+      <button onClick={decreaseCounter}>Decrease</button>
+    </div>
+  );
+}
 
 export default App;

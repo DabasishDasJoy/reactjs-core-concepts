@@ -40,6 +40,13 @@ const styled ={
 // }
 
 function App() {
+  const persons = ['Joy', 'shuvo', 'pritu', 'liton'];
+  const friends= [
+    {name:'dabasish', profession:'developer'},
+    {name:'joy', profession:'student'},
+    {name:'Abul', profession:'player'}
+  ];
+
   return (
     <div className="App">
       {/* create a custom componet and add here  */}
@@ -47,14 +54,32 @@ function App() {
       {/* For making different in data we need to send attibute as props dynamically */}
       
       {/* HTML attribute → converted into object by react → send those attributes as properties of an object → props → receives that object  */}
-      <Person name='Dabasish Das Joy' profession="developer"></Person>
-      <Person name='Liton' profession="Enginner"></Person>
-      <Person name='Shuvo' profession="Bekar"></Person>
+
+      {/* /* Yet this is static..  */
+      /* for creating dynamic components we can get help from javascript */
+      /* for example we have an array of names above */}
       
+      
+      {/* used to write js expression */}
+      {
+        persons.map(person => <Person name={person}></Person>)
+      }
+      {/* <Person name='Dabasish Das Joy' profession="developer"></Person>
+      <Person name='Liton' profession="Enginner"></Person>
+      <Person name='Shuvo' profession="Bekar"></Person> */}
+      
+      {/* we can do this using array of objects also */}
+
       <h1>Friend</h1>
-      <Friend name='Stiksd' profession="developer"></Friend>
+      {/* static creation */}
+      {/* <Friend name='Stiksd' profession="developer"></Friend>
       <Friend name='Nishat' profession="To to"></Friend>
-      <Friend name='Arnob' profession="Singer"></Friend>
+      <Friend name='Arnob' profession="Singer"></Friend> */}
+      {/* dynamic creation  with array of objects*/}
+
+      {
+        friends.map(friend => <Friend name={friend.name} profession={friend.profession}></Friend>)
+      }
     </div>
   );
 }

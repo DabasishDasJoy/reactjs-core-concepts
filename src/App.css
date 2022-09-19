@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+/* Third way of styling an element in JSX */
+.container{
+  background-color: purple;
+  border-radius: 10px;
+  padding: 20px;
+}

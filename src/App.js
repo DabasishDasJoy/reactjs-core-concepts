@@ -1,4 +1,5 @@
-import { useState } from 'react';
+
+import { useEffect, useState } from 'react';
 import './App.css';
 
 // Another ways of styling by declaring an object and define styles in the object.
@@ -84,10 +85,42 @@ function App() {
 
       {/* state handling */}
       <Counter></Counter>
+
+      {/* User data */}
+      
+      {/* conponent container tag */}
+      <Users></Users>
     </div>
   );
 }
 
+function Users() {
+  // think of default value of state, in this case since I'm going get an array so default value would be an empty array.
+  const [users, setusers] = useState([]);
+  //Here [] is dependecy for stopping infifnite loop
+  useEffect(()=>{
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(res => res.json())
+      .then(data => setusers(data))
+  }, []);
+
+  return (
+    <div>
+      <h1>User Data Fetch from API</h1>
+      {
+        users.map(user =><User name={user.name} email={user.email}></User>)
+      }
+    </div>
+  );
+}
+function User(props) {
+    return (
+      <div style={{boder:'2px solid purple', borderRadius:"10px", backgroundColor:"gray"}}>
+        <h1>Name: {props.name}</h1>
+        <p>Email: {props.email}</p>
+    </div>
+    );
+}
 // creating custom component->similar in look different in data
 // Start name with capital letter 
 // Adjacent JSX elements must be wrapped in an enclosing tag. either<></>

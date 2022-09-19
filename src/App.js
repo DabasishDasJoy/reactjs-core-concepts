@@ -2,9 +2,11 @@ import './App.css';
 
 // Another ways of styling by declaring an object and define styles in the object.
 const styled ={
-  color: 'red', 
+  color: 'white', 
   backgroundColor: 'gray',
-  borderRadius: '10px'
+  borderRadius: '10px', 
+  border: '2px solid slateblue',
+  margin: '10px'
 }
 // function App() {
 //   return (
@@ -41,12 +43,18 @@ function App() {
   return (
     <div className="App">
       {/* create a custom componet and add here  */}
-      <Person></Person>
-      <Person></Person>
-      <Person></Person>
-      <Friend></Friend>
-      <Friend></Friend>
-      <Friend></Friend>
+      {/* create component similar in look different in data  */}
+      {/* For making different in data we need to send attibute as props dynamically */}
+      
+      {/* HTML attribute → converted into object by react → send those attributes as properties of an object → props → receives that object  */}
+      <Person name='Dabasish Das Joy' profession="developer"></Person>
+      <Person name='Liton' profession="Enginner"></Person>
+      <Person name='Shuvo' profession="Bekar"></Person>
+      
+      <h1>Friend</h1>
+      <Friend name='Stiksd' profession="developer"></Friend>
+      <Friend name='Nishat' profession="To to"></Friend>
+      <Friend name='Arnob' profession="Singer"></Friend>
     </div>
   );
 }
@@ -54,25 +62,27 @@ function App() {
 // creating custom component->similar in look different in data 
 // Start name with capital letter */
 // Adjacent JSX elements must be wrapped in an enclosing tag. either<></> or a <div></div>
-function Person() {
+function Person(props) {
+  console.log("🚀 ~ file: App.js ~ line 65 ~ Person ~ props", props)
   // return <h1>Dabasish Das Joy </h1>
   // <p>Profession: Student</p>
 
   // wrapping the code to use JSX
   return(
     <div style={styled}>
-      <h1>Dabasish Das Joy</h1>
-      <p>Profession: Web Developer</p>
+      <h1>{props.name}</h1>
+      <p>Profession: {props.profession}</p>
     </div>
   );
 }
 
 
-function Friend(){
+function Friend(props){
+  console.log("🚀 ~ file: App.js ~ line 79 ~ Friend ~ props", props)
   return(
     <div style={styled}>
-      <h1>Sakib Al Hassan</h1>
-      <p>Proffesion: Cricketer</p>
+      <h1>{props.name}</h1>
+      <p>Proffesion: {props.profession}</p>
     </div>
   );
 }
